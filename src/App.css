@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0f172a;
+  color: white;
+  font-family: Inter, sans-serif;
+}
+
+.layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 260px;
+  background: #111827;
+  padding: 24px;
+  border-right: 1px solid #1f2937;
+}
+
+.sidebar h2 {
+  margin-bottom: 40px;
+  color: #3b82f6;
+}
+
+.sidebar a {
+  display: block;
+  color: #cbd5e1;
+  text-decoration: none;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.sidebar a:hover {
+  background: #1e293b;
+}
+
+.main {
+  flex: 1;
+  background: #0f172a;
+}
+
+.header {
+  height: 70px;
+  border-bottom: 1px solid #1f2937;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+input,
+select {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: white;
+  border-radius: 10px;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+button {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #2563eb;
+}
+
+.assessment-card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+}
+
+.section-title {
+  margin-bottom: 25px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 20px;
+}
+
+.step-active {
+  background: #3b82f6 !important;
+}
+
+.step-item {
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  background: #334155;
+}
+
+.progress-container {
+  height: 10px;
+  background: #334155;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 10px;
+  background: #3b82f6;
+}
