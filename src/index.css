@@ -1,0 +1,16 @@
+@import "tailwindcss";
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+::selection {
+  background: #2563eb;
+  color: white;
+}
