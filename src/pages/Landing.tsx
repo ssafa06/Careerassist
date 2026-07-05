@@ -146,43 +146,6 @@ const CountUp = ({ end, duration = 1500, suffix = "" }: CountUpProps) => {
   );
 };
 
-// ─── Company Logo with Letter Fallback ────────────────────────────────────────
-const LOGO_PALETTE = [
-  "bg-blue-100 text-blue-700",
-  "bg-indigo-100 text-indigo-700",
-  "bg-violet-100 text-violet-700",
-  "bg-emerald-100 text-emerald-700",
-  "bg-amber-100 text-amber-700",
-  "bg-rose-100 text-rose-700",
-  "bg-cyan-100 text-cyan-700",
-  "bg-orange-100 text-orange-700",
-  "bg-teal-100 text-teal-700",
-  "bg-pink-100 text-pink-700",
-];
-
-const CompanyLogo = ({ name, domain }: { name: string; domain: string }) => {
-  const [failed, setFailed] = useState(false);
-  const colorClass = LOGO_PALETTE[name.charCodeAt(0) % LOGO_PALETTE.length];
-  if (failed) {
-    return (
-      <span
-        className={`w-7 h-7 rounded-lg flex items-center justify-center font-black text-xs shrink-0 ${colorClass}`}
-      >
-        {name.charAt(0).toUpperCase()}
-      </span>
-    );
-  }
-  return (
-    <img
-      src={`https://www.google.com/s2/favicons?domain=${domain}&sz=32`}
-      alt={name}
-      className="w-7 h-7 object-contain rounded"
-      onError={() => setFailed(true)}
-    />
-  );
-};
-
-
 const Landing = () => {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -360,11 +323,15 @@ const Landing = () => {
           .marquee-track-right { animation: marquee-right 28s linear infinite; }
           .marquee-track-left:hover,
           .marquee-track-right:hover { animation-play-state: paused; }
+          @media (max-width: 640px) {
+            .marquee-track-left  { animation-duration: 14s; }
+            .marquee-track-right { animation-duration: 14s; }
+          }
         `}</style>
 
         {/* Row 1 — IT & Software + Product & SaaS */}
-        <div className="relative mb-4" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-          <div className="flex marquee-track-left whitespace-nowrap gap-4">
+        <div className="relative mb-3" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+          <div className="flex marquee-track-left whitespace-nowrap gap-2 sm:gap-4">
             {[
               { name: "TCS",          domain: "tcs.com" },
               { name: "Infosys",      domain: "infosys.com" },
@@ -406,19 +373,25 @@ const Landing = () => {
             ].map((co, i) => (
               <div
                 key={`r1-${i}`}
-                className="inline-flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
-                style={{ minWidth: 160 }}
+                className="inline-flex items-center gap-1.5 sm:gap-3 bg-white border border-slate-200 rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-5 sm:py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
+                style={{ minWidth: 100 }}
               >
-                <CompanyLogo name={co.name} domain={co.domain} />
-                <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${co.domain}&sz=32`}
+                  alt={co.name}
+                  className="w-4 h-4 sm:w-6 sm:h-6 object-contain rounded"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                />
+                <span className="text-xs sm:text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
               </div>
             ))}
           </div>
         </div>
 
+
         {/* Row 2 — Core Engineering + Automotive + Energy — scrolls right */}
         <div className="relative" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-          <div className="flex marquee-track-right whitespace-nowrap gap-4">
+          <div className="flex marquee-track-right whitespace-nowrap gap-2 sm:gap-4">
             {[
               { name: "L&T",              domain: "larsentoubro.com" },
               { name: "Siemens",          domain: "siemens.com" },
@@ -456,11 +429,16 @@ const Landing = () => {
             ].map((co, i) => (
               <div
                 key={`r2-${i}`}
-                className="inline-flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
-                style={{ minWidth: 180 }}
+                className="inline-flex items-center gap-1.5 sm:gap-3 bg-white border border-slate-200 rounded-lg sm:rounded-xl px-3 py-1.5 sm:px-5 sm:py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
+                style={{ minWidth: 110 }}
               >
-                <CompanyLogo name={co.name} domain={co.domain} />
-                <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${co.domain}&sz=32`}
+                  alt={co.name}
+                  className="w-4 h-4 sm:w-6 sm:h-6 object-contain rounded"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                />
+                <span className="text-xs sm:text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
               </div>
             ))}
           </div>
