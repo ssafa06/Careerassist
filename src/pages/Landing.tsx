@@ -296,6 +296,163 @@ const Landing = () => {
         </div>
       </section>
 
+      {/* ─── HIRING PARTNERS MARQUEE ──────────────────────────────────────────── */}
+      <section className="py-14 bg-slate-50 border-b border-slate-100 overflow-hidden">
+        <div className="max-w-7xl mx-auto px-5 md:px-8 mb-8 text-center">
+          <span className="inline-block bg-green-100 text-green-800 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider mb-3">
+            Hiring Partners
+          </span>
+          <h2 className="text-2xl md:text-3xl font-black text-slate-900">
+            Careers at India's Top Companies
+          </h2>
+          <p className="text-slate-500 text-sm mt-2 max-w-xl mx-auto font-medium">
+            Our career roadmaps are aligned with real hiring expectations at leading organisations across sectors.
+          </p>
+        </div>
+
+        <style>{`
+          @keyframes marquee-left {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+          }
+          @keyframes marquee-right {
+            0%   { transform: translateX(-50%); }
+            100% { transform: translateX(0); }
+          }
+          .marquee-track-left  { animation: marquee-left  28s linear infinite; }
+          .marquee-track-right { animation: marquee-right 28s linear infinite; }
+          .marquee-track-left:hover,
+          .marquee-track-right:hover { animation-play-state: paused; }
+        `}</style>
+
+        {/* Row 1 — IT & Software + Product & SaaS */}
+        <div className="relative mb-4" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+          <div className="flex marquee-track-left whitespace-nowrap gap-4">
+            {[
+              { name: "TCS",          domain: "tcs.com" },
+              { name: "Infosys",      domain: "infosys.com" },
+              { name: "Wipro",        domain: "wipro.com" },
+              { name: "HCL Tech",     domain: "hcltech.com" },
+              { name: "Tech Mahindra",domain: "techmahindra.com" },
+              { name: "Accenture",    domain: "accenture.com" },
+              { name: "Capgemini",    domain: "capgemini.com" },
+              { name: "Cognizant",    domain: "cognizant.com" },
+              { name: "LTIMindtree", domain: "ltimindtree.com" },
+              { name: "IBM",          domain: "ibm.com" },
+              { name: "Microsoft",    domain: "microsoft.com" },
+              { name: "Google",       domain: "about.google" },
+              { name: "Amazon",       domain: "amazon.com" },
+              { name: "Oracle",       domain: "oracle.com" },
+              { name: "Adobe",        domain: "adobe.com" },
+              { name: "Zoho",         domain: "zoho.com" },
+              { name: "Freshworks",   domain: "freshworks.com" },
+              { name: "Salesforce",   domain: "salesforce.com" },
+              // duplicate for seamless loop
+              { name: "TCS",          domain: "tcs.com" },
+              { name: "Infosys",      domain: "infosys.com" },
+              { name: "Wipro",        domain: "wipro.com" },
+              { name: "HCL Tech",     domain: "hcltech.com" },
+              { name: "Tech Mahindra",domain: "techmahindra.com" },
+              { name: "Accenture",    domain: "accenture.com" },
+              { name: "Capgemini",    domain: "capgemini.com" },
+              { name: "Cognizant",    domain: "cognizant.com" },
+              { name: "LTIMindtree", domain: "ltimindtree.com" },
+              { name: "IBM",          domain: "ibm.com" },
+              { name: "Microsoft",    domain: "microsoft.com" },
+              { name: "Google",       domain: "about.google" },
+              { name: "Amazon",       domain: "amazon.com" },
+              { name: "Oracle",       domain: "oracle.com" },
+              { name: "Adobe",        domain: "adobe.com" },
+              { name: "Zoho",         domain: "zoho.com" },
+              { name: "Freshworks",   domain: "freshworks.com" },
+              { name: "Salesforce",   domain: "salesforce.com" },
+            ].map((co, i) => (
+              <div
+                key={`r1-${i}`}
+                className="inline-flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
+                style={{ minWidth: 160 }}
+              >
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${co.domain}&sz=32`}
+                  alt={co.name}
+                  className="w-6 h-6 object-contain rounded"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                />
+                <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Row 2 — Core Engineering + Automotive + Energy — scrolls right */}
+        <div className="relative" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+          <div className="flex marquee-track-right whitespace-nowrap gap-4">
+            {[
+              { name: "L&T",              domain: "larsentoubro.com" },
+              { name: "Siemens",          domain: "siemens.com" },
+              { name: "ABB",              domain: "global.abb" },
+              { name: "Schneider Electric",domain: "se.com" },
+              { name: "Bosch",            domain: "bosch.in" },
+              { name: "BEL",              domain: "bel-india.in" },
+              { name: "Tata Motors",      domain: "tatamotors.com" },
+              { name: "Mahindra",         domain: "mahindra.com" },
+              { name: "Maruti Suzuki",    domain: "marutisuzuki.com" },
+              { name: "Hyundai",          domain: "hyundai.com" },
+              { name: "Ashok Leyland",    domain: "ashokleyland.com" },
+              { name: "Reliance",         domain: "ril.com" },
+              { name: "NTPC",             domain: "ntpc.co.in" },
+              { name: "IOCL",             domain: "iocl.com" },
+              { name: "Power Grid",       domain: "powergrid.in" },
+              { name: "Adani Green",      domain: "adanigreenenergy.com" },
+              // duplicate for seamless loop
+              { name: "L&T",              domain: "larsentoubro.com" },
+              { name: "Siemens",          domain: "siemens.com" },
+              { name: "ABB",              domain: "global.abb" },
+              { name: "Schneider Electric",domain: "se.com" },
+              { name: "Bosch",            domain: "bosch.in" },
+              { name: "BEL",              domain: "bel-india.in" },
+              { name: "Tata Motors",      domain: "tatamotors.com" },
+              { name: "Mahindra",         domain: "mahindra.com" },
+              { name: "Maruti Suzuki",    domain: "marutisuzuki.com" },
+              { name: "Hyundai",          domain: "hyundai.com" },
+              { name: "Ashok Leyland",    domain: "ashokleyland.com" },
+              { name: "Reliance",         domain: "ril.com" },
+              { name: "NTPC",             domain: "ntpc.co.in" },
+              { name: "IOCL",             domain: "iocl.com" },
+              { name: "Power Grid",       domain: "powergrid.in" },
+              { name: "Adani Green",      domain: "adanigreenenergy.com" },
+            ].map((co, i) => (
+              <div
+                key={`r2-${i}`}
+                className="inline-flex items-center gap-3 bg-white border border-slate-200 rounded-xl px-5 py-3 shadow-sm hover:shadow-md hover:border-blue-400 transition-all duration-200 cursor-default shrink-0"
+                style={{ minWidth: 180 }}
+              >
+                <img
+                  src={`https://www.google.com/s2/favicons?domain=${co.domain}&sz=32`}
+                  alt={co.name}
+                  className="w-6 h-6 object-contain rounded"
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
+                />
+                <span className="text-sm font-semibold text-slate-700 whitespace-nowrap">{co.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Sector labels row */}
+        <div className="max-w-7xl mx-auto px-5 md:px-8 mt-8 flex flex-wrap gap-2 justify-center">
+          {[
+            { label: "IT & Software", color: "bg-blue-100 text-blue-700" },
+            { label: "Product & SaaS", color: "bg-indigo-100 text-indigo-700" },
+            { label: "Core Engineering", color: "bg-slate-200 text-slate-700" },
+            { label: "Automotive", color: "bg-orange-100 text-orange-700" },
+            { label: "Energy & Infrastructure", color: "bg-green-100 text-green-700" },
+          ].map(s => (
+            <span key={s.label} className={`${s.color} text-xs font-bold px-3 py-1 rounded-full`}>{s.label}</span>
+          ))}
+        </div>
+      </section>
+
       {/* STATS SECTION (WITH COUNT-UP ANIMATION) */}
       <section className="py-12 bg-white px-5 md:px-8 border-b border-slate-100">
         <div className="max-w-7xl mx-auto">
