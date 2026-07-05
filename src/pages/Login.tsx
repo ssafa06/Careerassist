@@ -37,7 +37,7 @@ const handleGoogleLogin = async () => {
   try {
     setLoading(true);
     setError("");
-    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || `${window.location.origin}/dashboard`;
+    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || "https://careerassist.in/dashboard";
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
