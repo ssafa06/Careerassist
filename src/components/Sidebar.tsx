@@ -2,9 +2,12 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabase";
 import logo from "../assets/logo.png";
 
+type MenuItem = { name: string; path: string; icon: React.ReactNode; badge?: string };
+
 const Sidebar = () => {
   const location = useLocation();
   const navigate = useNavigate();
+
 
   const menu = [
     {
@@ -38,6 +41,17 @@ const Sidebar = () => {
       ),
     },
     {
+      name: "Invite & Refer",
+      path: "/referral",
+      badge: "Earn ₹100",
+      icon: (
+        <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
+            d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+        </svg>
+      ),
+    },
+    {
       name: "Profile",
       path: "/profile",
       icon: (
@@ -48,6 +62,7 @@ const Sidebar = () => {
       ),
     },
   ];
+
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
@@ -72,7 +87,7 @@ const Sidebar = () => {
       {/* Nav */}
       <nav className="flex-1 p-4 space-y-1">
         <p className="text-slate-600 text-xs font-bold uppercase tracking-widest px-3 mb-3">Menu</p>
-        {menu.map((item) => {
+        {(menu as MenuItem[]).map((item) => {
           const isActive = location.pathname === item.path;
           return (
             <Link
@@ -85,7 +100,12 @@ const Sidebar = () => {
                 }`}
             >
               <span className={isActive ? "text-white" : "text-slate-500"}>{item.icon}</span>
-              {item.name}
+              <span className="flex-1">{item.name}</span>
+              {item.badge && !isActive && (
+                <span className="text-[10px] font-bold bg-green-500/20 text-green-400 border border-green-500/30 px-1.5 py-0.5 rounded-full">
+                  {item.badge}
+                </span>
+              )}
               {isActive && (
                 <span className="ml-auto w-1.5 h-1.5 bg-white rounded-full" />
               )}

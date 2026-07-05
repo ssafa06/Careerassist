@@ -11,6 +11,7 @@ import Landing from './pages/Landing';
 import Profile from "./pages/Profile";
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUserDetails from './pages/AdminUserDetails';
+import Referral from './pages/Referral';
 function App() {
   return (
     <BrowserRouter>
@@ -88,6 +89,15 @@ function App() {
   path="/admin/user/:id"
   element={<AdminUserDetails />}
 />
+
+        <Route
+          path="/referral"
+          element={
+            <ProtectedRoute>
+              <Referral />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

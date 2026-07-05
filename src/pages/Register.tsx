@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import logo from "../assets/logo.png";
 import { FcGoogle } from "react-icons/fc";
+
 const Register = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
@@ -13,6 +14,16 @@ const [password, setPassword] = useState("");
 const [loading, setLoading] = useState(false);
 const [error, setError] = useState("");
 const [success, setSuccess] = useState("");
+
+// ── Capture referral param from URL and persist to localStorage ──
+useEffect(() => {
+  const params = new URLSearchParams(window.location.search);
+  const ref = params.get("ref");
+  if (ref && ref.trim()) {
+    localStorage.setItem("ca_referrer_id", ref.trim());
+  }
+}, []);
+
 const handleRegister = async () => {
   if (!name.trim()) {
     setError("Please enter your full name");
@@ -33,7 +44,7 @@ const handleRegister = async () => {
     setError("");
     setSuccess("");
 
-    const {error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -47,6 +58,23 @@ const handleRegister = async () => {
       setError(error.message);
       return;
     }
+
+    // ── Link referral if a referrer ID was stored ──
+    const referrerId = localStorage.getItem("ca_referrer_id");
+    const newUserId = data?.user?.id;
+
+    if (referrerId && newUserId && referrerId !== newUserId) {
+      // Insert referral row (ignore errors silently — don't block registration)
+      await supabase.from("referrals").insert({
+        referrer_id: referrerId,
+        referred_id: newUserId,
+        referred_email: email,
+        status: "registered",
+        registered_at: new Date().toISOString(),
+      });
+      localStorage.removeItem("ca_referrer_id");
+    }
+
    setSuccess(
 "Account created successfully. Please verify your email before signing in."
 );
@@ -61,6 +89,7 @@ navigate("/login");
     setLoading(false);
   }
 };
+
 
 const handleGoogleLogin = async () => {
   try {
