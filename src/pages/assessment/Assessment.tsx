@@ -649,7 +649,7 @@ export default function Assessment() {
           setPaymentStatus("paid");
           setShowPaymentModal(false);
           // Navigate to report with auto-download state
-          navigate("/report", { state: { autoDownload: true, redirect: "/dashboard" } });
+          navigate("/dashboard/report", { state: { autoDownload: true, redirect: "/dashboard" } });
         },
         modal: {
           ondismiss: () => setPaymentStatus("idle"),

@@ -71,7 +71,7 @@ const [, setPaymentStatus] = useState<PaymentStatus>("idle");  const [hasDashboa
         .maybeSingle();
 
       if (!assessment) {
-        navigate("/assessment");
+        navigate("/dashboard/assessment");
         return;
       }
 
@@ -699,7 +699,7 @@ navigate("/dashboard");      },
               key={item.id}
               onClick={() => {
                 if (item.id === "referral") {
-                  navigate("/referral");
+                  navigate("/dashboard/referral");
                 } else {
                   setActiveTab(item.id as any);
                 }
@@ -753,7 +753,7 @@ navigate("/dashboard");      },
           }}
         >
           <button
-            onClick={() => navigate("/report")}
+            onClick={() => navigate("/dashboard/report")}
             style={{
               width: "100%",
               background: "rgba(255,255,255,0.1)",
@@ -769,7 +769,7 @@ navigate("/dashboard");      },
             View Latest Report
           </button>
           <button
-            onClick={() => navigate("/assessment")}
+            onClick={() => navigate("/dashboard/assessment")}
             style={{
               width: "100%",
               background: "transparent",
@@ -893,7 +893,7 @@ navigate("/dashboard");      },
   </div>
   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
     <button
-      onClick={() => navigate("/report")}
+      onClick={() => navigate("/dashboard/report")}
       style={{
         background: "linear-gradient(135deg,#2563eb,#7c3aed)",
         color: "white",
@@ -1340,7 +1340,7 @@ navigate("/dashboard");      },
                   No reports yet
                 </div>
                 <button
-                  onClick={() => navigate("/assessment")}
+                  onClick={() => navigate("/dashboard/assessment")}
                   style={{
                     background: "#2563eb",
                     color: "white",
@@ -1429,7 +1429,7 @@ navigate("/dashboard");      },
     JSON.stringify(rep)
   );
 
-  navigate("/report");
+  navigate("/dashboard/report");
 }}
                     style={{
                       background: "#2563eb",

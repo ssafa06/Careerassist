@@ -26,7 +26,7 @@ function App() {
   }
 />
 <Route
-  path="/profile"
+  path="/dashboard/profile"
   element={
     <ProtectedRoute>
       <Profile />
@@ -64,7 +64,7 @@ function App() {
         />
 
         <Route
-          path="/assessment"
+          path="/dashboard/assessment"
           element={
             <ProtectedRoute>
               <Assessment />
@@ -73,7 +73,7 @@ function App() {
         />
 
         <Route
-          path="/report"
+          path="/dashboard/report"
           element={
             <ProtectedRoute>
               <Report />
@@ -91,7 +91,7 @@ function App() {
 />
 
         <Route
-          path="/referral"
+          path="/dashboard/referral"
           element={
             <ProtectedRoute>
               <Referral />

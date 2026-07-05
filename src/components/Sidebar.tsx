@@ -22,7 +22,7 @@ const Sidebar = () => {
     },
     {
       name: "Assessment",
-      path: "/assessment",
+      path: "/dashboard/assessment",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
@@ -32,7 +32,7 @@ const Sidebar = () => {
     },
     {
       name: "My Report",
-      path: "/report",
+      path: "/dashboard/report",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
@@ -42,7 +42,7 @@ const Sidebar = () => {
     },
     {
       name: "Invite & Refer",
-      path: "/referral",
+      path: "/dashboard/referral",
       badge: "Earn ₹100",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -53,7 +53,7 @@ const Sidebar = () => {
     },
     {
       name: "Profile",
-      path: "/profile",
+      path: "/dashboard/profile",
       icon: (
         <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
