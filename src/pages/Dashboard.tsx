@@ -49,7 +49,6 @@ const [, setPaymentStatus] = useState<PaymentStatus>("idle");  const [hasDashboa
   const [activeTab, setActiveTab] = useState<
     "overview" | "reports" | "career" | "financial"
   >("overview");
-  const [showUnlockModal, setShowUnlockModal] = useState(true);
 
   useEffect(() => {
     const init = async () => {
@@ -71,7 +70,7 @@ const [, setPaymentStatus] = useState<PaymentStatus>("idle");  const [hasDashboa
         .maybeSingle();
 
       if (!assessment) {
-        navigate("/dashboard/assessment");
+        navigate("/assessment");
         return;
       }
 
@@ -223,7 +222,7 @@ navigate("/dashboard");      },
     );
 
   const latestReport = selectedReport || reports[0];
-  const isLocked = !hasDashboardAccess && showUnlockModal;
+  const isLocked = !hasDashboardAccess;
   const topCareer = latestReport?.report_data?.topCareer || "Data Scientist";
   const careerFit = latestReport?.overall_score || 85;
   const confidence = latestReport?.confidence_score || 82;
@@ -693,17 +692,10 @@ navigate("/dashboard");      },
             { id: "reports", icon: "📋", label: "My Reports" },
             { id: "career", icon: "🎯", label: "Career Analysis" },
             { id: "financial", icon: "💰", label: "Financial Plan" },
-            { id: "referral", icon: "🎁", label: "Invite & Refer", badge: "Earn ₹100" },
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => {
-                if (item.id === "referral") {
-                  navigate("/dashboard/referral");
-                } else {
-                  setActiveTab(item.id as any);
-                }
-              }}
+              onClick={() => setActiveTab(item.id as any)}
               style={{
                 width: "100%",
                 display: "flex",
@@ -722,26 +714,9 @@ navigate("/dashboard");      },
                 color: activeTab === item.id ? "white" : "#93c5fd",
                 fontSize: "13px",
                 fontWeight: activeTab === item.id ? 700 : 400,
-                position: "relative",
               }}
             >
-              <span>{item.icon}</span>
-              <span style={{ flex: 1 }}>{item.label}</span>
-              {item.badge && (
-                <span
-                  style={{
-                    fontSize: "9px",
-                    fontWeight: 700,
-                    background: "rgba(34,197,94,0.2)",
-                    color: "#4ade80",
-                    border: "1px solid rgba(34,197,94,0.3)",
-                    padding: "2px 6px",
-                    borderRadius: "100px",
-                  }}
-                >
-                  {item.badge}
-                </span>
-              )}
+              <span>{item.icon}</span> {item.label}
             </button>
           ))}
         </nav>
@@ -753,7 +728,7 @@ navigate("/dashboard");      },
           }}
         >
           <button
-            onClick={() => navigate("/dashboard/report")}
+            onClick={() => navigate("/report")}
             style={{
               width: "100%",
               background: "rgba(255,255,255,0.1)",
@@ -769,7 +744,7 @@ navigate("/dashboard");      },
             View Latest Report
           </button>
           <button
-            onClick={() => navigate("/dashboard/assessment")}
+            onClick={() => navigate("/assessment")}
             style={{
               width: "100%",
               background: "transparent",
@@ -814,29 +789,8 @@ navigate("/dashboard");      },
         textAlign: "center",
         boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
         maxWidth: "420px",
-        position: "relative",
       }}
     >
-      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "-15px", marginRight: "-15px", marginBottom: "5px" }}>
-        <button
-          onClick={() => setShowUnlockModal(false)}
-          style={{
-            background: "none",
-            border: "none",
-            fontSize: "20px",
-            fontWeight: "bold",
-            cursor: "pointer",
-            color: "#94a3b8",
-            padding: "5px",
-            lineHeight: 1,
-            transition: "color 0.2s",
-          }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = "#475569")}
-          onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
-        >
-          ✕
-        </button>
-      </div>
       <h2>🔒 Unlock Dashboard</h2>
 
       <p>
@@ -893,7 +847,7 @@ navigate("/dashboard");      },
   </div>
   <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "8px" }}>
     <button
-      onClick={() => navigate("/dashboard/report")}
+      onClick={() => navigate("/report")}
       style={{
         background: "linear-gradient(135deg,#2563eb,#7c3aed)",
         color: "white",
@@ -1340,7 +1294,7 @@ navigate("/dashboard");      },
                   No reports yet
                 </div>
                 <button
-                  onClick={() => navigate("/dashboard/assessment")}
+                  onClick={() => navigate("/assessment")}
                   style={{
                     background: "#2563eb",
                     color: "white",
@@ -1429,7 +1383,7 @@ navigate("/dashboard");      },
     JSON.stringify(rep)
   );
 
-  navigate("/dashboard/report");
+  navigate("/report");
 }}
                     style={{
                       background: "#2563eb",

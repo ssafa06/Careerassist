@@ -27,7 +27,7 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
     );
   }
 
-  return authenticated ? <Navigate to="/dashboard" /> : children;
+  return authenticated ? <Navigate to="/assessment" /> : children;
 };
 
 export default PublicRoute;

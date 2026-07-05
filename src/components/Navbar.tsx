@@ -55,7 +55,7 @@ export default function Navbar() {
         .maybeSingle();
 
       if (!assessment) {
-        navigate("/dashboard/assessment");
+        navigate("/assessment");
         return;
       }
 
@@ -97,7 +97,7 @@ export default function Navbar() {
                   </a>
                 ))}
               </>
-            ) : location.pathname === "/dashboard/assessment" ? null : (
+            ) : location.pathname === "/assessment" ? null : (
               <button
                 onClick={() => navigate("/")}
                 className="text-slate-600 hover:text-blue-600 font-semibold transition flex items-center gap-1.5 cursor-pointer"
@@ -111,7 +111,7 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             {user ? (
               <div className="flex items-center gap-4">
-                {!location.pathname.startsWith("/dashboard") && (
+                {!["/dashboard", "/assessment"].includes(location.pathname) && (
                   <button
                     onClick={startAssessment}
                     className="px-4 py-1.5 rounded-lg bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold shadow-sm transition active:scale-95 cursor-pointer flex items-center gap-1.5 text-xs animate-fade-in"
@@ -163,7 +163,7 @@ export default function Navbar() {
                 </a>
               ))}
             </>
-          ) : location.pathname === "/dashboard/assessment" ? null : (
+          ) : location.pathname === "/assessment" ? null : (
             <button
               onClick={() => { setMobileMenuOpen(false); navigate("/"); }}
               className="w-full text-left text-slate-700 hover:text-blue-600 font-semibold py-2 flex items-center gap-1.5 cursor-pointer"
@@ -175,7 +175,7 @@ export default function Navbar() {
           <div className="pt-3 border-t border-slate-200 flex flex-col gap-2">
             {user ? (
               <>
-                {!location.pathname.startsWith("/dashboard") && (
+                {!["/dashboard", "/assessment"].includes(location.pathname) && (
                   <button onClick={() => { setMobileMenuOpen(false); startAssessment(); }} className="w-full text-xs font-bold bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg py-2 text-center cursor-pointer">
                     Go to Dashboard
                   </button>

@@ -173,7 +173,7 @@ const Landing = () => {
         .maybeSingle();
 
       if (!assessment) {
-        navigate("/dashboard/assessment");
+        navigate("/assessment");
         return;
       }
 

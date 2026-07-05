@@ -2483,7 +2483,7 @@ const Report = () => {
           <div className="no-data-icon">📋</div>
           <h2 className="no-data-title">No Assessment Data Found</h2>
           <p className="no-data-text">Please complete the assessment first.</p>
-          <a href="/dashboard/assessment" className="no-data-btn">
+          <a href="/assessment" className="no-data-btn">
             Start Assessment
           </a>
         </div>

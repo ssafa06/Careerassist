@@ -11,7 +11,6 @@ import Landing from './pages/Landing';
 import Profile from "./pages/Profile";
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUserDetails from './pages/AdminUserDetails';
-import Referral from './pages/Referral';
 function App() {
   return (
     <BrowserRouter>
@@ -26,7 +25,7 @@ function App() {
   }
 />
 <Route
-  path="/dashboard/profile"
+  path="/profile"
   element={
     <ProtectedRoute>
       <Profile />
@@ -64,7 +63,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/assessment"
+          path="/assessment"
           element={
             <ProtectedRoute>
               <Assessment />
@@ -73,7 +72,7 @@ function App() {
         />
 
         <Route
-          path="/dashboard/report"
+          path="/report"
           element={
             <ProtectedRoute>
               <Report />
@@ -89,15 +88,6 @@ function App() {
   path="/admin/user/:id"
   element={<AdminUserDetails />}
 />
-
-        <Route
-          path="/dashboard/referral"
-          element={
-            <ProtectedRoute>
-              <Referral />
-            </ProtectedRoute>
-          }
-        />
       </Routes>
     </BrowserRouter>
   );
