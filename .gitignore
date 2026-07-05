@@ -1,5 +1,23 @@
-# Logs
-logs
+# ─── Dependencies ─────────────────────────────────────────────────────────────
+node_modules/
+
+# ─── Build Output ─────────────────────────────────────────────────────────────
+dist/
+dist-ssr/
+
+# ─── Environment Variables (NEVER commit these) ────────────────────────────────
+# All .env files with real values must be excluded.
+# Only .env.example (with placeholder values) should be committed.
+.env
+.env.local
+.env.production
+.env.development
+.env.staging
+.env.test
+.env.*.local
+
+# ─── Logs ─────────────────────────────────────────────────────────────────────
+logs/
 *.log
 npm-debug.log*
 yarn-debug.log*
@@ -7,18 +25,22 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
+# ─── Editor & OS Files ────────────────────────────────────────────────────────
 .vscode/*
 !.vscode/extensions.json
-.idea
+.idea/
 .DS_Store
+Thumbs.db
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# ─── TypeScript ───────────────────────────────────────────────────────────────
+*.tsbuildinfo
+
+# ─── Misc ─────────────────────────────────────────────────────────────────────
+*.local
+temp_extract/
+*.zip
