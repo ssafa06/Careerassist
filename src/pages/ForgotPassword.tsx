@@ -15,11 +15,11 @@ const handleResetPassword = async () => {
     setError("");
     setSuccess("");
 
+    const resetRedirectUrl = import.meta.env.VITE_RESET_REDIRECT_URL || `${window.location.origin}/reset-password`;
     const { error } = await supabase.auth.resetPasswordForEmail(
       email,
       {
-        redirectTo:
-          "https://careerassist.in/reset-password",
+        redirectTo: resetRedirectUrl,
       }
     );
 
