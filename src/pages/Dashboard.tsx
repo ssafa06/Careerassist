@@ -692,10 +692,17 @@ navigate("/dashboard");      },
             { id: "reports", icon: "📋", label: "My Reports" },
             { id: "career", icon: "🎯", label: "Career Analysis" },
             { id: "financial", icon: "💰", label: "Financial Plan" },
+            { id: "referral", icon: "🎁", label: "Invite & Refer", badge: "Earn ₹100" },
           ].map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id as any)}
+              onClick={() => {
+                if (item.id === "referral") {
+                  navigate("/referral");
+                } else {
+                  setActiveTab(item.id as any);
+                }
+              }}
               style={{
                 width: "100%",
                 display: "flex",
@@ -714,9 +721,26 @@ navigate("/dashboard");      },
                 color: activeTab === item.id ? "white" : "#93c5fd",
                 fontSize: "13px",
                 fontWeight: activeTab === item.id ? 700 : 400,
+                position: "relative",
               }}
             >
-              <span>{item.icon}</span> {item.label}
+              <span>{item.icon}</span>
+              <span style={{ flex: 1 }}>{item.label}</span>
+              {item.badge && (
+                <span
+                  style={{
+                    fontSize: "9px",
+                    fontWeight: 700,
+                    background: "rgba(34,197,94,0.2)",
+                    color: "#4ade80",
+                    border: "1px solid rgba(34,197,94,0.3)",
+                    padding: "2px 6px",
+                    borderRadius: "100px",
+                  }}
+                >
+                  {item.badge}
+                </span>
+              )}
             </button>
           ))}
         </nav>
