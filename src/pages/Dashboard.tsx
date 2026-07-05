@@ -49,6 +49,7 @@ const [, setPaymentStatus] = useState<PaymentStatus>("idle");  const [hasDashboa
   const [activeTab, setActiveTab] = useState<
     "overview" | "reports" | "career" | "financial"
   >("overview");
+  const [showUnlockModal, setShowUnlockModal] = useState(true);
 
   useEffect(() => {
     const init = async () => {
@@ -222,7 +223,7 @@ navigate("/dashboard");      },
     );
 
   const latestReport = selectedReport || reports[0];
-  const isLocked = !hasDashboardAccess;
+  const isLocked = !hasDashboardAccess && showUnlockModal;
   const topCareer = latestReport?.report_data?.topCareer || "Data Scientist";
   const careerFit = latestReport?.overall_score || 85;
   const confidence = latestReport?.confidence_score || 82;
@@ -813,8 +814,29 @@ navigate("/dashboard");      },
         textAlign: "center",
         boxShadow: "0 20px 40px rgba(0,0,0,0.15)",
         maxWidth: "420px",
+        position: "relative",
       }}
     >
+      <div style={{ display: "flex", justifyContent: "flex-end", marginTop: "-15px", marginRight: "-15px", marginBottom: "5px" }}>
+        <button
+          onClick={() => setShowUnlockModal(false)}
+          style={{
+            background: "none",
+            border: "none",
+            fontSize: "20px",
+            fontWeight: "bold",
+            cursor: "pointer",
+            color: "#94a3b8",
+            padding: "5px",
+            lineHeight: 1,
+            transition: "color 0.2s",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#475569")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
+        >
+          ✕
+        </button>
+      </div>
       <h2>🔒 Unlock Dashboard</h2>
 
       <p>
