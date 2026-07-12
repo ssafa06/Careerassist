@@ -37,7 +37,7 @@ const handleGoogleLogin = async () => {
   try {
     setLoading(true);
     setError("");
-    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || "https://careerassist.in/dashboard";
+    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || "https://CareerNavigator.in/dashboard";
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -74,12 +74,12 @@ const handleGoogleLogin = async () => {
           {/* Sowmya: place your logo here */}
          <img
   src={logo}
-  alt="CareerAssist"
+  alt="CareerNavigator"
   className="w-10 h-10 object-contain"
 />
 
 <span className="text-white font-bold text-xl tracking-tight">
-  CareerAssist
+  CareerNavigator
 </span>
 </div>
 
@@ -101,7 +101,7 @@ const handleGoogleLogin = async () => {
         {/* Footer */}
         <div className="relative z-10">
           <p className="text-blue-300 text-xs">
-            © 2026 CareerAssist · Built for students across India
+            © 2026 CareerNavigator · Built for students across India
           </p>
         </div>
       </div>
@@ -114,12 +114,12 @@ const handleGoogleLogin = async () => {
           {/* Sowmya: place your logo here */}
        <img
   src={logo}
-  alt="CareerAssist"
+  alt="CareerNavigator"
   className="w-8 h-8 object-contain"
 />
 
 <span className="text-white font-bold text-lg">
-  CareerAssist
+  CareerNavigator
 </span>
         </div>
 

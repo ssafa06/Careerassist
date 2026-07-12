@@ -80,11 +80,11 @@ export default function Assessment() {
         semester: state.semester,
         passedOutYear: state.passedOutYear
       });
-      localStorage.setItem("careerassist_assessment_config", JSON.stringify(state));
+      localStorage.setItem("CareerNavigator_assessment_config", JSON.stringify(state));
       return;
     }
 
-    const savedConfig = localStorage.getItem("careerassist_assessment_config");
+    const savedConfig = localStorage.getItem("CareerNavigator_assessment_config");
     if (savedConfig) {
       try {
         setAssessmentConfig(JSON.parse(savedConfig));
@@ -110,9 +110,6 @@ export default function Assessment() {
   const [answers, setAnswers] = useState<Record<string, any>>({});
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [paymentStatus, setPaymentStatus] = useState<"idle" | "loading" | "paid" | "failed">("idle");
-
   // Helper to map raw database sections to standard frontend AssessmentSection
   const mapSection = useCallback((sec: any, layer: number, defaultSubtitle = ""): AssessmentSection => {
     return {
@@ -415,7 +412,7 @@ export default function Assessment() {
 
   useEffect(() => {
     const loadInitialData = async () => {
-      const saved = localStorage.getItem("careerassist_wizard_answers");
+      const saved = localStorage.getItem("CareerNavigator_wizard_answers");
       if (saved) {
         try {
           setAnswers(JSON.parse(saved));
@@ -450,7 +447,7 @@ export default function Assessment() {
 
   useEffect(() => {
     if (Object.keys(answers).length > 0) {
-      localStorage.setItem("careerassist_wizard_answers", JSON.stringify(answers));
+      localStorage.setItem("CareerNavigator_wizard_answers", JSON.stringify(answers));
     }
   }, [answers]);
 
@@ -570,103 +567,6 @@ export default function Assessment() {
     }
   }, [overallProgress]);
 
-  const loadRazorpayScript = useCallback((): Promise<boolean> => {
-    return new Promise((resolve) => {
-      if ((window as any).Razorpay) {
-        resolve(true);
-        return;
-      }
-      const script = document.createElement("script");
-      script.src = "https://checkout.razorpay.com/v1/checkout.js";
-      script.onload = () => resolve(true);
-      script.onerror = () => resolve(false);
-      document.body.appendChild(script);
-    });
-  }, []);
-
-  const initiatePayment = useCallback(async () => {
-    setPaymentStatus("loading");
-    const loaded = await loadRazorpayScript();
-    if (!loaded) {
-      alert("Payment gateway failed to load. Please check your internet connection.");
-      setPaymentStatus("idle");
-      return;
-    }
-
-    try {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        alert("Session expired. Please log in again.");
-        navigate("/login");
-        return;
-      }
-
-      const { data: orderData, error: orderError } = await supabase.functions.invoke("create-razorpay-order");
-
-      if (orderError || !orderData?.id) {
-        console.error(orderError);
-        alert("Unable to create payment order. Please try again.");
-        setPaymentStatus("idle");
-        return;
-      }
-
-      const options = {
-        key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-        amount: orderData.amount,
-        currency: orderData.currency,
-        order_id: orderData.id,
-        name: "CareerAssist AI",
-        description: "Dashboard Access – Lifetime",
-        image: logo,
-        prefill: {
-          name: user?.user_metadata?.full_name || "",
-          email: user?.email || "",
-        },
-        theme: {
-          color: "#2563eb",
-        },
-        handler: async (response: any) => {
-          setPaymentStatus("loading");
-          const { data, error } = await supabase.functions.invoke(
-            "verify-razorpay-payment",
-            {
-              body: {
-                user_id: user.id,
-                payment_id: response.razorpay_payment_id,
-                order_id: response.razorpay_order_id,
-                signature: response.razorpay_signature,
-              },
-            },
-          );
-
-          if (error || !data?.success) {
-            console.error(error);
-            alert("Payment verification failed");
-            setPaymentStatus("failed");
-            return;
-          }
-
-          setPaymentStatus("paid");
-          setShowPaymentModal(false);
-          // Navigate to report with auto-download state
-          navigate("/report", { state: { autoDownload: true, redirect: "/dashboard" } });
-        },
-        modal: {
-          ondismiss: () => setPaymentStatus("idle"),
-        },
-      };
-
-      const rzp = new (window as any).Razorpay(options);
-      rzp.on("payment.failed", () => {
-        setPaymentStatus("failed");
-      });
-      rzp.open();
-    } catch (err) {
-      console.error(err);
-      setPaymentStatus("idle");
-    }
-  }, [loadRazorpayScript, navigate]);
-
   const submitAssessment = useCallback(async () => {
     setIsSubmitting(true);
     try {
@@ -717,11 +617,12 @@ export default function Assessment() {
 
       localStorage.setItem("assessmentData", JSON.stringify(answers));
       localStorage.setItem("assessmentConfig", JSON.stringify(assessmentConfig));
-      localStorage.removeItem("careerassist_wizard_answers");
-      localStorage.removeItem("careerassist_assessment_config");
+      localStorage.removeItem("CareerNavigator_wizard_answers");
+      localStorage.removeItem("CareerNavigator_assessment_config");
 
       // Assessment saved successfully. Show Checkout Payment Modal immediately.
-      setShowPaymentModal(true);
+      // Assessment completed successfully
+navigate("/report");
     } catch (err: any) {
       console.error(err);
       alert("Submission error: " + err.message);
@@ -759,14 +660,14 @@ export default function Assessment() {
       setCurrentStep(1);
       setCurrentSectionIndex(0);
       setAssessmentConfig(null);
-      localStorage.removeItem("careerassist_wizard_answers");
-      localStorage.removeItem("careerassist_assessment_config");
+      localStorage.removeItem("CareerNavigator_wizard_answers");
+      localStorage.removeItem("CareerNavigator_assessment_config");
     }
   }, []);
 
   const handleStartSetup = (config: any) => {
     setAssessmentConfig(config);
-    localStorage.setItem("careerassist_assessment_config", JSON.stringify(config));
+    localStorage.setItem("CareerNavigator_assessment_config", JSON.stringify(config));
   };
 
   // Render Setup if configuration is not yet active
@@ -919,82 +820,6 @@ export default function Assessment() {
         </div>
       </div>
 
-      {/* Checkout Payment Modal */}
-      {showPaymentModal && (
-        <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in">
-          <div className="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden animate-fade-in">
-            {/* Header banner */}
-            <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white text-center">
-              <img src={logo} className="w-12 h-12 mx-auto object-contain bg-white/20 rounded-full p-2 mb-3 animate-pulse" alt="CareerAssist" />
-              <h3 className="text-xl font-bold">Unlock Your AI Career Report</h3>
-              <p className="text-xs text-blue-100 mt-1">Get lifetime access & SWOT analysis</p>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 space-y-4">
-              <p className="text-sm text-slate-600 leading-relaxed text-center">
-                Your assessment answers have been safely saved. Complete your lifetime dashboard payment to instantly generate your report and unlock all dashboard features.
-              </p>
-
-              {/* Price block */}
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center justify-between">
-                <div>
-                  <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Amount</span>
-                  <p className="text-sm font-semibold text-slate-500">Lifetime Access</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-3xl font-black text-slate-900">₹499</span>
-                  <p className="text-[10px] text-slate-400 font-bold">One-time payment</p>
-                </div>
-              </div>
-
-              {/* Specs checklist */}
-              <div className="space-y-2.5">
-                {[
-                  "Complete AI analysis & 5-Layer matching",
-                  "SWOT & detailed skill gap analysis",
-                  "Downloadable PDF report",
-                  "Lifetime access to college/stream updates"
-                ].map((spec) => (
-                  <div key={spec} className="flex items-center gap-2 text-xs font-medium text-slate-700">
-                    <span className="w-4 h-4 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-[10px]">✓</span>
-                    {spec}
-                  </div>
-                ))}
-              </div>
-
-              {/* Action buttons */}
-              <div className="pt-2 flex flex-col gap-2">
-                <button
-                  type="button"
-                  onClick={initiatePayment}
-                  disabled={paymentStatus === "loading"}
-                  className="w-full py-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition shadow-lg disabled:opacity-50 active:scale-98 flex items-center justify-center gap-2 cursor-pointer text-sm"
-                >
-                  {paymentStatus === "loading" ? (
-                    "Processing Payment..."
-                  ) : (
-                    <>
-                      Pay and Unlock Report
-                    </>
-                  )}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowPaymentModal(false);
-                    navigate("/dashboard");
-                  }}
-                  disabled={paymentStatus === "loading"}
-                  className="w-full py-2.5 rounded-xl border border-slate-200 text-slate-500 hover:bg-slate-50 font-semibold text-xs transition cursor-pointer"
-                >
-                  Pay Later (Go to Dashboard)
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

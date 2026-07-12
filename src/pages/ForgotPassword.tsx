@@ -45,12 +45,12 @@ const handleResetPassword = async () => {
 
   <img
     src={logo}
-    alt="CareerAssist"
+    alt="CareerNavigator"
     className="w-10 h-10 object-contain"
   />
 
   <span className="text-white font-bold text-lg">
-    CareerAssist
+    CareerNavigator
   </span>
 
 </div>

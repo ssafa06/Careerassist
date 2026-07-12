@@ -8,7 +8,6 @@ const AdminUserDetails = () => {
   const [profile, setProfile] = useState<any>(null);
   const [assessments, setAssessments] = useState<any[]>([]);
   const [reports, setReports] = useState<any[]>([]);
-  const [payments, setPayments] = useState<any[]>([]);
   const [referrals, setReferrals] = useState<any[]>([]);
 
   useEffect(() => {
@@ -39,13 +38,6 @@ const AdminUserDetails = () => {
       .eq("user_id", id);
 
     setReports(reportData || []);
-
-    const { data: paymentData } = await supabase
-      .from("subscriptions")
-      .select("*")
-      .eq("user_id", id);
-
-    setPayments(paymentData || []);
 
     const { data: referralData } = await supabase
       .from("referrals")
@@ -91,16 +83,6 @@ const AdminUserDetails = () => {
 
           <h1 className="text-4xl font-bold mt-3">
             {reports.length}
-          </h1>
-        </div>
-
-        <div className="bg-white rounded-3xl p-6 shadow-sm">
-          <h3 className="font-bold">
-            Payments
-          </h3>
-
-          <h1 className="text-4xl font-bold mt-3">
-            {payments.length}
           </h1>
         </div>
 

@@ -73,9 +73,9 @@ export default function Navbar() {
         <div className="h-20 flex items-center justify-between">
           {/* Logo & Brand */}
           <div onClick={() => navigate("/")} className="flex items-center gap-3 cursor-pointer">
-            <img src={logo} loading="lazy" className="w-11 h-11 object-contain" alt="CareerAssist" />
+            <img src={logo} loading="lazy" className="w-11 h-11 object-contain" alt="CareerNavigator" />
             <div>
-              <h2 className="font-black text-2xl tracking-tight text-slate-900">CareerAssist</h2>
+              <h2 className="font-black text-2xl tracking-tight text-slate-900">CareerNavigator</h2>
               <p className="text-xs text-slate-500 font-semibold">AI Career Guidance</p>
             </div>
           </div>

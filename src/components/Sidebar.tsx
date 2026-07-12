@@ -61,9 +61,9 @@ const Sidebar = () => {
       <div className="px-5 py-5 border-b border-slate-800">
         <Link to="/dashboard" className="flex items-center gap-3 group">
           {/* LOGO — replace img with your logo */}
-          <img src={logo} alt="CareerAssist" className="w-8 h-8 object-contain" />
+          <img src={logo} alt="CareerNavigator" className="w-8 h-8 object-contain" />
           <div>
-            <p className="text-white font-bold text-base leading-none tracking-tight">CareerAssist</p>
+            <p className="text-white font-bold text-base leading-none tracking-tight">CareerNavigator</p>
             <p className="text-slate-500 text-xs mt-0.5">AI Career Platform</p>
           </div>
         </Link>

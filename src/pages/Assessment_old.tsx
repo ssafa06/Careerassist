@@ -2138,7 +2138,7 @@ const Assessment = () => {
         <div className="mb-8">
           <img
             src={logo}
-            alt="CareerAssist"
+            alt="CareerNavigator"
             className="w-8 h-8 object-contain"
           />
           <button

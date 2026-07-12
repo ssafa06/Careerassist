@@ -66,7 +66,7 @@ const handleGoogleLogin = async () => {
   try {
     setLoading(true);
     setError("");
-    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || "https://careerassist.in/dashboard";
+    const redirectUrl = import.meta.env.VITE_REDIRECT_URL || "https://CareerNavigator.in/dashboard";
     const { error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
@@ -104,12 +104,12 @@ const handleGoogleLogin = async () => {
         <div className="relative z-10 flex items-center gap-3">
          <img
   src={logo}
-  alt="CareerAssist"
+  alt="CareerNavigator"
   className="w-10 h-10 object-contain"
 />
 
 <span className="text-white font-bold text-xl tracking-tight">
-  CareerAssist
+  CareerNavigator
 </span>
         </div>
 
@@ -165,12 +165,12 @@ const handleGoogleLogin = async () => {
         <div className="flex items-center gap-2 mb-10 lg:hidden">
          <img
   src={logo}
-  alt="CareerAssist"
+  alt="CareerNavigator"
   className="w-8 h-8 object-contain"
 />
 
 <span className="text-white font-bold text-lg">
-  CareerAssist
+  CareerNavigator
 </span>
         </div>
 

@@ -10,7 +10,7 @@ const AdminHeader = () => {
           </h1>
 
           <p className="text-slate-500">
-            Manage CareerAssist Platform
+            Manage CareerNavigator Platform
           </p>
         </div>
 
@@ -22,7 +22,7 @@ const AdminHeader = () => {
             </p>
 
             <p className="text-sm text-slate-500">
-              CareerAssist
+              CareerNavigator
             </p>
           </div>
 

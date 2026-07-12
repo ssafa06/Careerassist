@@ -151,7 +151,7 @@ const Landing = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   useEffect(() => {
-    document.title = "CareerAssist | AI Career Guidance Platform";
+    document.title = "CareerNavigator | AI Career Guidance Platform";
   }, []);
 
   const startAssessment = async () => {
@@ -858,7 +858,7 @@ const Landing = () => {
             <div>
               <h3 className="text-white font-bold mb-4">Contact</h3>
               <p className="text-sm leading-relaxed mb-1">Email support:</p>
-              <p className="text-white text-sm font-semibold mb-4">careerassistcontact@gmail.com</p>
+              <p className="text-white text-sm font-semibold mb-4">Zetspaceinfo@gmail.com</p>
               <p className="text-slate-500 text-xs">Mon – Sat · 9 AM to 6 PM IST</p>
             </div>
           </div>

@@ -68,11 +68,11 @@ const ResetPassword = () => {
           <div className="inline-flex items-center gap-3">
             <img
               src={logo}
-              alt="CareerAssist"
+              alt="CareerNavigator"
               className="w-10 h-10 object-contain"
             />
 
-            <h1 className="text-white text-2xl font-bold">CareerAssist</h1>
+            <h1 className="text-white text-2xl font-bold">CareerNavigator</h1>
           </div>
         </div>
 

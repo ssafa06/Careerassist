@@ -36,7 +36,7 @@ export default function AssessmentSidebar({
         <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-6 text-white">
 
           <h2 className="text-xl font-bold">
-            CareerAssist
+           CareerNavigator 
           </h2>
 
           <p className="text-sm text-blue-100 mt-1">
@@ -165,7 +165,7 @@ export default function AssessmentSidebar({
 
             <p className="mt-2 text-sm text-slate-500">
               Complete all sections to unlock your
-              personalized CareerAssist report.
+              personalized CareerNavigator report.
             </p>
 
           </div>

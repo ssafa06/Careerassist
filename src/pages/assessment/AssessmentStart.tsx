@@ -179,7 +179,7 @@ export default function AssessmentStart({ onStart }: AssessmentStartProps) {
                     Discover Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Perfect Career Path</span>
                   </h1>
                   <p className="mt-6 text-slate-500 text-sm lg:text-base leading-relaxed font-semibold">
-                    CareerAssist combines scientific psychometric analysis, cognitive evaluation, behavioural assessments, and stream-specific competency mapping to curate your personalized career roadmap.
+                    CareerNavigator combines scientific psychometric analysis, cognitive evaluation, behavioural assessments, and stream-specific competency mapping to curate your personalized career roadmap.
                   </p>
 
                   <div className="grid grid-cols-2 gap-4 mt-8">

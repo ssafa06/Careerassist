@@ -1647,7 +1647,7 @@ const Report = () => {
   const [assessmentConfig, setAssessmentConfig] = useState<any>(null);
   
   useEffect(() => {
-    const savedConfig = localStorage.getItem("assessmentConfig") || localStorage.getItem("careerassist_assessment_config");
+    const savedConfig = localStorage.getItem("assessmentConfig") || localStorage.getItem("CareerNavigator_assessment_config");
     if (savedConfig) {
       try {
         setAssessmentConfig(JSON.parse(savedConfig));
@@ -2098,9 +2098,9 @@ const Report = () => {
   const PageHeader = ({ page }: { page: number }) => (
     <div className="report-header">
       <div className="header-left">
-        <img src={logo} alt="CareerAssist" className="header-logo" />
+        <img src={logo} alt="CareerNavigator" className="header-logo" />
         <div>
-          <div className="header-title">CareerAssist</div>
+          <div className="header-title">CareerNavigator</div>
           <div className="header-subtitle">Your Future, Our Guidance</div>
         </div>
       </div>
@@ -2155,7 +2155,7 @@ const Report = () => {
         <div className="action-bar bg-blue-900 border-b border-slate-200 px-6 py-4 flex flex-row items-center justify-between sticky top-0 z-50">
           <div className="flex items-center gap-3">
             <img src={logo} alt="" className="w-8 h-8 object-contain" />
-            <span className="font-bold text-lg text-white">CareerAssist</span>
+            <span className="font-bold text-lg text-white">CareerNavigator</span>
             <span className="text-xs font-semibold bg-white/10 text-blue-200 px-2.5 py-1 rounded-full border border-white/20">
               College AI Career Report
             </span>
@@ -2189,7 +2189,7 @@ const Report = () => {
               <div className="flex items-center gap-3">
                 <img src={logo} alt="" className="w-10 h-10" />
                 <div>
-                  <h2 className="text-xl font-black text-slate-900">CareerAssist</h2>
+                  <h2 className="text-xl font-black text-slate-900">CareerNavigator</h2>
                   <p className="text-[10px] uppercase font-extrabold text-blue-650 tracking-wider">AI Career Guidance Report</p>
                 </div>
               </div>
@@ -2316,7 +2316,7 @@ const Report = () => {
           </div>
 
           <div className="flex justify-between items-center border-t border-slate-200 pt-4 mt-6 text-[10px] font-bold text-slate-400">
-            <span>CareerAssist • Dynamic Report Page 1</span>
+            <span>CareerNavigator • Dynamic Report Page 1</span>
             <span>Page 1 of 2</span>
           </div>
         </div>
@@ -2329,7 +2329,7 @@ const Report = () => {
               <div className="flex items-center gap-3">
                 <img src={logo} alt="" className="w-10 h-10" />
                 <div>
-                  <h2 className="text-xl font-black text-slate-900">CareerAssist</h2>
+                  <h2 className="text-xl font-black text-slate-900">CareerNavigator</h2>
                   <p className="text-[10px] uppercase font-extrabold text-blue-650 tracking-wider">AI Career Guidance Report</p>
                 </div>
               </div>
@@ -2468,7 +2468,7 @@ const Report = () => {
           </div>
 
           <div className="flex justify-between items-center border-t border-slate-200 pt-4 mt-6 text-[10px] font-bold text-slate-400">
-            <span>CareerAssist • Dynamic Report Page 2</span>
+            <span>CareerNavigator • Dynamic Report Page 2</span>
             <span>Page 2 of 2</span>
           </div>
         </div>
@@ -2496,7 +2496,7 @@ const Report = () => {
       <div className="action-bar">
         <div className="action-left">
           <img src={logo} alt="" className="action-logo" />
-          <span className="action-brand">CareerAssist</span>
+          <span className="action-brand">CareerNavigator</span>
           <span className="action-label">• Career Assessment Report</span>
         </div>
         <div className="action-right">
@@ -4847,9 +4847,9 @@ const Report = () => {
             {/* Email Client Simulation Sandbox */}
             <div className="email-sandbox">
               <div className="email-sandbox-header">
-                <div><strong>From:</strong> CareerAssist &lt;onboarding@resend.dev&gt;</div>
+                <div><strong>From:</strong> CareerNavigator &lt;onboarding@resend.dev&gt;</div>
                 <div><strong>To:</strong> {recipientEmail}</div>
-                <div><strong>Subject:</strong> CareerAssist: Professional Career Assessment Report for {data?.name || "Student"}</div>
+                <div><strong>Subject:</strong> CareerNavigator: Professional Career Assessment Report for {data?.name || "Student"}</div>
               </div>
               <div className="email-sandbox-body">
                 {/* Visual rendering of the HTML Template */}
@@ -4857,7 +4857,7 @@ const Report = () => {
                   <div style={{ maxWidth: '500px', margin: '0 auto', background: '#ffffff', borderRadius: '12px', border: '1px solid #e2e8f0', overflow: 'hidden' }}>
                     <div style={{ background: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)', padding: '20px', color: '#ffffff', textAlign: 'center' }}>
                       <div style={{ fontSize: '11px', textTransform: 'uppercase', letterSpacing: '1.5px', opacity: 0.8 }}>Career Assessment</div>
-                      <h2 style={{ margin: '4px 0 0 0', fontSize: '20px', fontWeight: 'bold' }}>CareerAssist</h2>
+                      <h2 style={{ margin: '4px 0 0 0', fontSize: '20px', fontWeight: 'bold' }}>CareerNavigator</h2>
                     </div>
                     <div style={{ padding: '20px', color: '#334155', fontSize: '13px', lineHeight: '1.5' }}>
                       <p>Dear <strong>{data?.name || "Student"}</strong>,</p>
@@ -4909,7 +4909,7 @@ const Report = () => {
                       </div>
                     </div>
                     <div style={{ background: '#f1f5f9', padding: '12px', textAlign: 'center', fontSize: '10px', color: '#64748b' }}>
-                      Questions? Email us at <a href="mailto:careerassistcontact@gmail.com" style={{ color: '#2563eb' }}>careerassistcontact@gmail.com</a>
+                      Questions? Email us at <a href="mailto:Zetspaceinfo@gmail.com" style={{ color: '#2563eb' }}>Zetspaceinfo@gmail.com</a>
                     </div>
                   </div>
                 </div>
